@@ -14,7 +14,7 @@ Function Get-Filter
 		[Parameter (Mandatory = $true)]
 		[ValidateNotNullOrEmpty()]
 		[Alias("FilesFolder")]
-		[String]$Path# = "U:\SFirm-Bilder" # Replace it for you files path.
+		[String]$Path # Replace it for you files path.
 	
 	)
 	
@@ -28,7 +28,7 @@ Function Get-Filter
 	$files | ForEach{ 
 		$x = $_.CreationTime.ToShortDateString()
 		$NewFolderName = Get-Date $x -Format dd.MM.yyyy
-		$DestinationPath = "U:\SFirm-Bilder\$NewFolderName"
+		$DestinationPath = "C:\writeHier-yourPath\$NewFolderName"
 
 		if (test-path $DestinationPath){ 
 			move-item $_.fullname $DestinationPath 
@@ -38,10 +38,9 @@ Function Get-Filter
 			move-item $_.fullname $DestinationPath 
 		}
 	}
-Start-Sleep -Milliseconds 2000;
-Write-host ""
-Write-host "----------- The files have been sorted. -----------"
-Write-host "---------------------------------------------------"
-Start-Sleep -Milliseconds 2000;
+	Start-Sleep -Milliseconds 2000;
+	Write-host ""
+	Write-host "----------- The files have been sorted. -----------"
+	Write-host "---------------------------------------------------"
+	Start-Sleep -Milliseconds 2000;
 }
-
