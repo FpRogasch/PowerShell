@@ -11,7 +11,7 @@ Function Get-Delete
 	Param
 	(
 		[Parameter	(HelpMessage = "Please enter the age of the data that will be deleted", 
-					Mandatory=$true)]
+				Mandatory=$true)]
 		[int]$Days
 	)
 
@@ -19,10 +19,12 @@ Function Get-Delete
 	{
 
 		# Variable
-		$FolderPath = "U:\SFirm-Bilder" # Path where your folders are
-		$BackupPath = "U:\SFirm-Bilder\backup" # Only for testing (Path where you will move the Folder, for testing)
+		$FolderPath = "C:\yourPath\" # Path where your folders are
+		$BackupPath = "C:\yourPath\backup" # Only for testing (Path where you will move the Folder, for testing)
 		$DeleteTime = (get-date).addDays(-$Days)
-		$Files = Get-ChildItem -Path $FolderPath -Recurse | Where {$_.PsIsContainer -and ($_.CreationTime -le $DeleteTime)} # Selection from Files, that older than $Days are. 
+		# Selection from Files, that older than $Days are.
+		$Files = Get-ChildItem -Path $FolderPath -Recurse | 
+			Where {$_.PsIsContainer -and ($_.CreationTime -le $DeleteTime)}
 		$FileCount = 0
 		
 		Write-Host ""
